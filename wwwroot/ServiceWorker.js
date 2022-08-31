@@ -1,28 +1,47 @@
-﻿var static_files = [
-    '/css/menu.css',
-    '/FirstPWA.styles.css',
-    '/lib/bootstrap/dist/css/bootstrap.min.css',
-    '/lib/jquery/dist/jquery.min.js',
-    '/lib/bootstrap/dist/js/bootstrap.bundle.min.js',
-    '/js/menu.js',
-    
-    '/favicon.ico'.
-,
-    '/'
+﻿var nombreCacheEstatico = "cacheEstatico1"
+var archivosEstaticos = [
+	"/css/menu.css", "/MiPrimeraAplicacionProgressiva.styles.css", "/lib/jquery/dist/jquery.min.js",
+	"/lib/bootstrap/dist/js/bootstrap.bundle.min.js", "/js/menu.js", "/", "/js/generic.js", "/img/loading.gif"
 ]
 
-
 self.addEventListener("install", event => {
-    console.log("install ...")
+
+	console.log("Evento Install")
+	event.waitUntil(
+		caches.open(nombreCacheEstatico).then(cache => {
+			return cache.addAll(archivosEstaticos)
+		})
+	)
+
+
 })
 
 self.addEventListener("activate", event => {
-    console.log("activate ...")
-    //! solo se necesita un refresh en vez de dos para ver cambios en el service worker
-    event.waitUntil(self.clients.claim())
+
+	console.log("Evento Activate")
+	event.waitUntil(self.clients.claim())
 })
 
 self.addEventListener("fetch", event => {
-    console.log(event.request.url)
-    event.respondWith(fetch(event.request.url))
+
+	const respuesta = caches.match(event.request).then(res => {
+
+		if (res) return res;
+		else {
+			return fetch(event.request).then(response => {
+				return response;
+			})
+		}
+
+	}).catch(err => {
+		return null;
+	})
+	//if (event.request.url == "https://localhost:7283/css/menu.css") {
+	//	event.respondWith(null);
+	//}else
+	//console.log(event.request.url)
+	event.respondWith(respuesta)
 })
+
+
+
