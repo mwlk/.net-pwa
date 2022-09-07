@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MiPrimeraAplicacionProgressiva</title>
+    <title>@ViewData["Title"] - First PWA</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/menu.css" />
-    <link rel="stylesheet" href="~/MiPrimeraAplicacionProgressiva.styles.css" />
+    <link rel="stylesheet" href="~/FirstPWA.styles.css" />
 </head>
 <body>
     <header class="header">
@@ -56,7 +56,7 @@
         
         if(navigator.serviceWorker){
             console.log("Permite Service Worker")
-            navigator.serviceWorker.register("/service-worker.js").then(res=>{
+            navigator.serviceWorker.register("/ServiceWorker.js").then(res => {
                 console.log("Se registro el Service Worker")
             }).catch(err=>{
                 console.log("No se registro el Service Worker")
