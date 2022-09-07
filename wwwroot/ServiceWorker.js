@@ -1,7 +1,7 @@
 ﻿var nombreCacheEstatico = "cacheEstatico1"
 var archivosEstaticos = [
-	"/css/menu.css", "/MiPrimeraAplicacionProgressiva.styles.css", "/lib/jquery/dist/jquery.min.js",
-	"/lib/bootstrap/dist/js/bootstrap.bundle.min.js", "/js/menu.js", "/", "/js/generic.js", "/img/loading.gif"
+	"/css/menu.css", "/FirstPWA.styles.css", "/lib/jquery/dist/jquery.min.js",
+	"/lib/bootstrap/dist/js/bootstrap.bundle.min.js", "/js/menu.js", "/", "/js/generic.js", "/images/loading.gif"
 ]
 
 self.addEventListener("install", event => {
